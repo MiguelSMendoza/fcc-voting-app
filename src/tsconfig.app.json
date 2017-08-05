@@ -4,7 +4,13 @@
     "outDir": "../out-tsc/app",
     "module": "es2015",
     "baseUrl": "",
-    "types": []
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "types": [
+      "firebase",
+      "node"
+    ]
   },
   "exclude": [
     "test.ts",
