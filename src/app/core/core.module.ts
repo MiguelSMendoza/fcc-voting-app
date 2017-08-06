@@ -9,6 +9,7 @@ import { environment } from 'environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HomeComponent } from './home/home.component';
+import { PollsService } from 'app/polls/polls.service';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { HomeComponent } from './home/home.component';
   declarations: [HeaderComponent, HomeComponent],
   exports: [HeaderComponent, AppRoutingModule],
   providers: [
-    AuthService
+    AuthService,
+    PollsService
   ]
 })
 export class CoreModule { }

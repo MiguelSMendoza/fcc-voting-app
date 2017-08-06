@@ -8,7 +8,7 @@ import { User } from 'firebase';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  isNavbarCollapsed: boolean;
   isAuthenticated: boolean;
   username: string;
 

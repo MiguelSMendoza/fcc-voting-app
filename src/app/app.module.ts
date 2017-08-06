@@ -6,6 +6,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { PollModule } from 'app/poll/poll.module';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { CoreModule } from './core/core.module';
     FormsModule,
     HttpModule,
     NgbModule,
-    CoreModule
+    CoreModule,
+    PollModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
