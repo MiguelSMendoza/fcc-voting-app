@@ -1,3 +1,5 @@
+<h1>My Polls</h1>
+<hr/>
 <div class="list-group">
-  <a  class="list-group-item list-group-item-action" [routerLink]="['/poll', poll.$key]" *ngFor="let poll of polls | async;">{{poll.title}}</a>
+    <a class="list-group-item list-group-item-action" [routerLink]="['/poll', poll.$key]" *ngFor="let poll of polls | async;">{{poll.title}}</a>
 </div>

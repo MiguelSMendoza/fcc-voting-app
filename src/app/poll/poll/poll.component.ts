@@ -4,6 +4,7 @@ import { Poll } from 'app/model/poll.model';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { Subscription } from 'rxjs/Subscription';
 import { Params, ActivatedRoute } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-poll',
@@ -22,7 +23,9 @@ export class PollComponent implements OnInit, OnDestroy {
   public isDataAvailable = false;
 
 
-  constructor(private pollService: PollsService, private route: ActivatedRoute) { 
+  constructor(private pollService: PollsService,
+    private route: ActivatedRoute,
+    public toastr: ToastsManager) {
     this.poll = new Poll('',[]);
   }
 
@@ -49,6 +52,7 @@ export class PollComponent implements OnInit, OnDestroy {
   onSubmit(vote) {
     this.poll.options[vote].votes += 1;
     this.pollService.getPoll(this.key).update(this.poll);
+    this.toastr.success('Gracias por tu voto', 'Voto Registrado');
     this.voted = true;
   }
 
