@@ -1,5 +1,10 @@
-a, button {
+a,
+button {
     cursor: pointer;
+}
+
+.btn-danger {
+    margin-left: 1rem;
 }
 
 .list-group {

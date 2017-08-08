@@ -1,4 +1,4 @@
-import { Option } from 'app/model/option.model';
+import { Option } from './option.model';
 
 export class Poll {
     displayName: string;

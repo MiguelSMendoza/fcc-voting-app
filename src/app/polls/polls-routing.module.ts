@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { PollsComponent } from 'app/polls/polls.component';
-import { AuthGuardService } from 'app/auth/auth-guard.service';
-import { NewPollComponent } from 'app/polls/new-poll/new-poll.component';
+import { AuthGuardService } from '../auth/auth-guard.service';
+import { NewPollComponent } from './new-poll/new-poll.component';
+import { MyPollsComponent } from './my-polls/my-polls.component';
 
 const pollsRoutes: Routes = [
   {
     path: '',
-    component: PollsComponent,
+    component: MyPollsComponent,
     canActivate: [AuthGuardService]
   },
   {

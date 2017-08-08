@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PollsComponent } from './polls.component';
-import { PollsRoutingModule } from 'app/polls/polls-routing.module';
+import { MyPollsComponent } from './my-polls/my-polls.component';
+import { PollsRoutingModule } from './polls-routing.module';
 import { NewPollComponent } from './new-poll/new-poll.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PollsService } from 'app/polls/polls.service';
+import { PollsService } from './polls.service';
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import { PollsService } from 'app/polls/polls.service';
     ReactiveFormsModule,
     PollsRoutingModule
   ],
-  declarations: [PollsComponent, NewPollComponent],
+  declarations: [MyPollsComponent, NewPollComponent],
   providers: [
     PollsService
   ]

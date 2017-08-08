@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormArray, FormControl, Validators, FormGroup } from '@angular/forms';
-import { PollsService } from 'app/polls/polls.service';
+import { PollsService } from '../polls.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 

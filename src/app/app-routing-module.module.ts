@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AppComponent } from 'app/app.component';
-import { HomeComponent } from 'app/core/home/home.component';
-import { PollComponent } from 'app/poll/poll/poll.component';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './core/home/home.component';
+import { PollComponent } from './poll/poll/poll.component';
 
 const appRoutes: Routes = [
   {

@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2/database';
-import { PollsService } from '../../polls/polls.service';
 import { Poll } from '../../model/poll.model';
+import { PollsService } from '../polls.service';
+import { Subscription } from 'rxjs/Subscription';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Subscription } from "rxjs/Subscription";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-polls',
+  templateUrl: './my-polls.component.html',
+  styleUrls: ['./my-polls.component.css'],
   animations: [
     trigger(
       'listItem', [
@@ -20,19 +20,19 @@ import { Subscription } from "rxjs/Subscription";
     )
   ]
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  subscription: Subscription;
+export class MyPollsComponent implements OnInit, OnDestroy {
   totalPolls: Poll[];
+  subscription: Subscription;
   polls: Poll[];
   next = 0;
 
   constructor(private pollService: PollsService) {
     this.polls = [];
     this.totalPolls = [];
-   }
+  }
 
   ngOnInit() {
-    this.subscription = this.pollService.polls.subscribe(
+    this.subscription = this.pollService.getUserPolls().subscribe(
       polls => {
         if (this.totalPolls.length !== polls.length) {
           this.totalPolls = polls.reverse();

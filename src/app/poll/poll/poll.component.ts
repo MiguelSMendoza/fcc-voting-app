@@ -1,17 +1,41 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PollsService } from 'app/polls/polls.service';
-import { Poll } from 'app/model/poll.model';
-import { FirebaseObjectObservable } from 'angularfire2/database';
-import { Subscription } from 'rxjs/Subscription';
-import { Params, ActivatedRoute, Router } from '@angular/router';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { AuthService } from 'app/auth/auth.service';
+import { Component, OnInit, OnDestroy} from '@angular/core';
+import { trigger, state, style, animate, transition, keyframes, group } from '@angular/animations';
 import { User } from 'firebase';
+import { FirebaseObjectObservable } from 'angularfire2/database';
+import { Params, ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
+import { PollsService } from '../../polls/polls.service';
+import { Poll } from '../../model/poll.model';
+import { AuthService } from '../../auth/auth.service';
+
 
 @Component({
   selector: 'app-poll',
   templateUrl: './poll.component.html',
-  styleUrls: ['./poll.component.css']
+  styleUrls: ['./poll.component.css'],
+  animations: [
+    trigger(
+      'leaveAnimation', [
+        transition(':leave', [
+          style({ maxWidth: '100%', opacity: 1}),
+          animate('500ms', style({maxWidth: '0', opacity: 0}))
+        ])
+      ]
+    ),
+    trigger(
+      'listItem', [
+        transition(':enter', [
+          style({
+          opacity: 0,
+          transform: 'translateY(-10px)'
+        }),
+        animate(300)
+        ])
+      ]
+    )
+  ]
 })
 export class PollComponent implements OnInit, OnDestroy {
   paramsSubscription: Subscription;
@@ -31,7 +55,7 @@ export class PollComponent implements OnInit, OnDestroy {
     private router: Router,
     public toastr: ToastsManager,
     private authService: AuthService) {
-    this.poll = new Poll('',[]);
+    this.poll = new Poll('', []);
   }
 
   ngOnInit() {

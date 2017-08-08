@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'app/auth/auth.service';
-import { AppRoutingModule } from 'app/app-routing-module.module';
+import { AuthService } from '../auth/auth.service';
+import { AppRoutingModule } from '../app-routing-module.module';
 import { AngularFireModule } from 'angularfire2';
-import { environment } from 'environments/environment';
+import { environment } from '../../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HomeComponent } from './home/home.component';
-import { PollsService } from 'app/polls/polls.service';
+import { PollsService } from '../polls/polls.service';
 
 @NgModule({
   imports: [

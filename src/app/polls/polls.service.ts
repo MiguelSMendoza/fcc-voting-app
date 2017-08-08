@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Poll } from 'app/model/poll.model';
+import { Poll } from '../model/poll.model';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { AuthService } from 'app/auth/auth.service';
+import { AuthService } from '../auth/auth.service';
 import { User } from 'firebase';
-import { Thenable } from "firebase/app";
+import { Thenable } from 'firebase/app';
 
 @Injectable()
 export class PollsService {
@@ -13,7 +13,11 @@ export class PollsService {
   email: string;
 
   constructor(private db: AngularFireDatabase, private authService: AuthService) {
-    this.polls = db.list('/polls');
+    this.polls = db.list('/polls', {
+      query: {
+        orderByChild: 'timestamp',
+      }
+    });
     this.authService.user.subscribe(
       (user: User) => {
         if (user) {
@@ -29,15 +33,16 @@ export class PollsService {
     );
   }
 
-  savePoll(poll: Poll){
+  savePoll(poll: Poll) {
     poll['displayName'] = this.displayName;
     poll['uid'] = this.uid;
     poll['email'] = this.email;
+    poll['timestamp'] = new Date().getTime();
     return this.polls.push(poll);
   }
 
   getUserPolls() {
-    return this.db.list('/polls',{
+    return this.db.list('/polls', {
       query: {
         orderByChild: 'uid',
         equalTo: this.uid
