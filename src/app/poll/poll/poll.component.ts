@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes, group } from '@angular/animations';
 import { User } from 'firebase';
 import { FirebaseObjectObservable } from 'angularfire2/database';
@@ -8,7 +8,9 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { PollsService } from '../../polls/polls.service';
 import { Poll } from '../../model/poll.model';
+import { Option } from '../../model/option.model';
 import { AuthService } from '../../auth/auth.service';
+import { BaseChartDirective } from "ng2-charts";
 
 
 @Component({
@@ -19,8 +21,8 @@ import { AuthService } from '../../auth/auth.service';
     trigger(
       'leaveAnimation', [
         transition(':leave', [
-          style({ maxWidth: '100%', opacity: 1}),
-          animate('500ms', style({maxWidth: '0', opacity: 0}))
+          style({ maxWidth: '100%', maxHeight: '100%', opacity: 1}),
+          animate('500ms', style({maxWidth: '0', maxHeight: '0', opacity: 0}))
         ])
       ]
     ),
@@ -31,13 +33,14 @@ import { AuthService } from '../../auth/auth.service';
           opacity: 0,
           transform: 'translateY(-10px)'
         }),
-        animate(300)
+        animate(1000)
         ])
       ]
     )
   ]
 })
 export class PollComponent implements OnInit, OnDestroy {
+  @ViewChild('pollChart') chart: BaseChartDirective;
   paramsSubscription: Subscription;
   poll: Poll;
   key: string;
@@ -65,8 +68,8 @@ export class PollComponent implements OnInit, OnDestroy {
         this.pollService.getPoll(this.key).subscribe(
           (data) => {
             this.poll = data;
-            this.doughnutChartLabels = this.poll.options.map((value) => {return value.name; });
-            this.doughnutChartData = this.poll.options.map((value) => {return value.votes; });
+            this.doughnutChartLabels = this.poll.options.map((value) => { return value.name;  });
+            this.doughnutChartData = this.poll.options.map((value) => { return value.votes; });
             this.isDataAvailable = true;
             this.authService.user.subscribe(
               (user: User) => {
@@ -101,6 +104,17 @@ export class PollComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscription.unsubscribe();
+  }
+
+  onAddOption(option) {
+    this.poll.options.push(new Option(option, 1));
+    this.pollService.getPoll(this.key).update(this.poll).then(
+      () => {
+        this.voted = true;
+        this.chart.ngOnChanges({});
+        this.toastr.success('Thanks for your vote!', 'Voted!');
+      }
+    );
   }
 
   onSubmit(vote) {

@@ -3,7 +3,7 @@ import { FirebaseListObservable } from 'angularfire2/database';
 import { PollsService } from '../../polls/polls.service';
 import { Poll } from '../../model/poll.model';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Subscription } from "rxjs/Subscription";
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-home',
