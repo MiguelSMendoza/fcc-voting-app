@@ -42,7 +42,7 @@ export class PollComponent implements OnInit, OnDestroy {
   poll: Poll;
   key: string;
   voted = false;
-  private canRemove = false;
+  canRemove = false;
 
   public doughnutChartLabels: string[] = [''];
   public doughnutChartData: number[] = [0];
@@ -83,7 +83,7 @@ export class PollComponent implements OnInit, OnDestroy {
     );
   }
 
-  shareOnTwitter(title, key) {
+  shareOnTwitter(title) {
     const share = 'https://twitter.com/intent/tweet?text=Vote on "' + title + '" in ' + window.location+ ' via @MiguelSMendoza';
     window.open(share, 'Twitter', 'height=285,width=550,resizable=1');
   }
