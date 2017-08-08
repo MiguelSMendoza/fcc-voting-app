@@ -83,7 +83,7 @@ export class PollComponent implements OnInit, OnDestroy {
     this.poll.options[vote].votes += 1;
     this.pollService.getPoll(this.key).update(this.poll).then(
       () => {
-        this.toastr.success('Gracias por tu voto', 'Voto Registrado');
+        this.toastr.success('Thanks for your vote!', 'Voted');
         this.voted = true;
       }
     );
