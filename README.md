@@ -1,6 +1,10 @@
+[![Build Status](https://travis-ci.org/MiguelSMendoza/fcc-voting-app.svg?branch=master)](https://travis-ci.org/MiguelSMendoza/fcc-voting-app)
+
 # freeCodeCamp - Build a Voting App
 
 App created following instructions in [freeCodeCamp](https://www.freecodecamp.org/challenges/build-a-voting-app)
+
+[Live Demo](https://MiguelSMendoza.github.io/fcc-voting-app)
 
 ## User stories
   * As an authenticated user, I can keep my polls and come back later to access them.
